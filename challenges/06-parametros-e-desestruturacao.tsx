@@ -1,11 +1,23 @@
-function updateUserRoute(body, params) {
-  updateUserController(body, params);
+// Parâmetros e Desestruturação
+
+// used destructuring and passed parameters as objects.
+function updateUserRoute({ body, params }) {
+  updateUserController({ body, params });
 }
 
-function updateUserController(data, params) {
-  userRepository.update(data, params);
+function updateUserController({ body, params }) {
+  const { id, name, email, password } = body;
+  userRepository.update({
+    body: {
+      id,
+      name,
+      email,
+      password,
+    },
+    params,
+  });
 }
 
 const userRepository = {
-  update: (data, params) => {},
+  update: ({ body, params }) => {},
 };
